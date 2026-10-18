@@ -701,24 +701,23 @@ const CONFIG = {
   }
   tagReveal();
 
-  /* ---------- FALLING PETALS (continuous, realistic) ---------- */
+  /* ---------- FALLING HEARTS (continuous, gentle) ---------- */
   function fallingPetals(){
     if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const colors=["#f0a6b5","#e8889b","#d76a82","#c14d66","#a93a52","#be5e72"];
-    const petalSVG=c=>`<svg viewBox="0 0 24 24" width="100%" height="100%" style="color:${c}">`
-      +`<path d="M12 1.5C15.5 7.5 22.5 8.8 22.5 15 22.5 20.2 17.4 22.5 12 22.5 6.6 22.5 1.5 20.2 1.5 15 1.5 8.8 8.5 7.5 12 1.5Z" fill="currentColor"/>`
-      +`<path d="M12 4C13.8 9 18 10.8 18.2 15.2" stroke="rgba(255,255,255,.5)" stroke-width="1.1" fill="none" stroke-linecap="round"/>`
+    const heartSVG=c=>`<svg viewBox="0 0 24 24" width="100%" height="100%" style="color:${c}">`
+      +`<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>`
       +`</svg>`;
     function spawn(){
       if(document.hidden) return;
-      const burst=1;  // one petal per tick — gentle
+      const burst=1;  // one heart per tick — gentle
       for(let k=0;k<burst;k++){
         const d=document.createElement("div"); d.className="petal-fall";
-        const size=13+Math.random()*16;
+        const size=13+Math.random()*15;
         d.style.cssText=`left:${Math.random()*100}vw;width:${size}px;height:${size}px;animation-duration:${8+Math.random()*7}s`;
         const inr=document.createElement("div"); inr.className="pf-in";
         inr.style.cssText=`opacity:${.72+Math.random()*.25};animation-duration:${2+Math.random()*2.2}s`;
-        inr.innerHTML=petalSVG(colors[(Math.random()*colors.length)|0]);
+        inr.innerHTML=heartSVG(colors[(Math.random()*colors.length)|0]);
         d.appendChild(inr); document.body.appendChild(d);
         d.addEventListener("animationend",()=>d.remove());
       }
