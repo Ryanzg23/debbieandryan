@@ -82,7 +82,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:500;margin:0;color:var(--ink)
 .check-row:hover .acts{opacity:1}
 .empty{color:var(--ink-soft);font-style:italic;padding:30px;text-align:center}
 /* RSVP */
-.rsvp-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px}
+.rsvp-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px}
 .rstat{background:linear-gradient(180deg,#fff,#fdf4f5);border:1px solid var(--line);border-top:3px solid var(--burgundy);border-radius:14px;padding:18px;text-align:center}
 .rstat .n{font-family:var(--display);font-size:36px;color:var(--burgundy);line-height:1}
 .rstat .l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
@@ -451,19 +451,15 @@ const CONFIG = {
   function renderRsvps(){
     if(!rsvps.length){ $("#rsvp-summary").innerHTML=""; $("#rsvp-list").innerHTML=`<div class="empty">No RSVPs yet.</div>`; return; }
     const yes=rsvps.filter(r=>r.attending), no=rsvps.filter(r=>!r.attending);
-    const heads=yes.reduce((s,r)=>s+(parseInt(r.guest_count,10)||1),0);
     $("#rsvp-summary").innerHTML=`
       <div class="rstat"><div class="n">${yes.length}</div><div class="l">Accepting</div></div>
       <div class="rstat"><div class="n">${no.length}</div><div class="l">Declining</div></div>
-      <div class="rstat"><div class="n">${heads}</div><div class="l">Total Guests</div></div>
       <div class="rstat"><div class="n">${rsvps.length}</div><div class="l">Responses</div></div>`;
     $("#rsvp-list").innerHTML=rsvps.map(r=>`
       <div class="rsvp-item ${r.attending?'yes':'no'}">
         <div class="ri-main"><span class="ri-name">${esc(r.name)}</span><span class="ri-badge">${r.attending?'Attending':'Declined'}</span></div>
         <div class="ri-meta">
-          ${r.attending?`<span>&#128101; ${parseInt(r.guest_count,10)||1} guest${(parseInt(r.guest_count,10)||1)>1?'s':''}</span>`:''}
           ${r.side?`<span>${r.side==='groom'?"Ryan's side":"Debbie's side"}</span>`:''}
-          ${r.meal?`<span>&#127869; ${esc(r.meal)}</span>`:''}
           ${r.email?`<span>&#9993; ${esc(r.email)}</span>`:''}
         </div>
         ${r.message?`<div class="ri-msg">&ldquo;${esc(r.message)}&rdquo;</div>`:''}

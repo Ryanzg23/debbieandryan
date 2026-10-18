@@ -341,6 +341,11 @@ section{padding:clamp(70px,11vw,130px) 0;position:relative}
   #curtain .cmono .sub{font-size:9px;letter-spacing:.2em}
   .hero-flourish .fl{width:28px}
   .hero-crest .sprig{width:100px}
+  .loc-part{display:none}
+  .countdown{gap:12px}
+  .cd-unit{min-width:0}
+  .cd-unit .n{font-size:32px}
+  .cd-unit .l{font-size:9px;letter-spacing:.14em;margin-top:6px}
 }
 
 /* Gate modal */
@@ -548,16 +553,6 @@ section{padding:clamp(70px,11vw,130px) 0;position:relative}
             <div class="radio-chip"><input type="radio" id="att-no" name="attending" value="no"><label for="att-no">Regretfully Decline</label></div>
           </div>
         </div>
-        <div class="field two">
-          <div>
-            <label for="r-count">Number of Guests</label>
-            <input id="r-count" name="guest_count" type="number" min="1" max="20" value="1" />
-          </div>
-          <div>
-            <label for="r-meal">Meal Preference <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
-            <input id="r-meal" name="meal" placeholder="e.g. Vegetarian" />
-          </div>
-        </div>
         <div class="field">
           <label for="r-msg">A Note for the Couple <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
           <textarea id="r-msg" name="message" placeholder="Share your wishes…"></textarea>
@@ -656,7 +651,7 @@ const CONFIG = {
   document.title = `${CONFIG.couple.groom} & ${CONFIG.couple.bride} — We're Getting Married`;
   $("#hero-names").innerHTML = `${esc(CONFIG.couple.groom)} <span class="amp">&amp;</span> ${esc(CONFIG.couple.bride)}`;
   $("#hero-loc").textContent = CONFIG.tagline;
-  $("#hero-date").textContent = `${CONFIG.dateDisplay} · ${CONFIG.location}`;
+  $("#hero-date").innerHTML = `${esc(CONFIG.dateDisplay)}<span class="loc-part"> · ${esc(CONFIG.location)}</span>`;
   if(CONFIG.heroPhoto){
     const h=document.querySelector(".hero");
     h.style.backgroundImage=`linear-gradient(rgba(255,250,251,.70),rgba(248,228,233,.78)), url('${CONFIG.heroPhoto}')`;
@@ -784,8 +779,6 @@ const CONFIG = {
       email:(fd.get("email")||"").trim()||null,
       side:fd.get("side")||null,
       attending:fd.get("attending")==="yes",
-      guest_count:parseInt(fd.get("guest_count"),10)||1,
-      meal:(fd.get("meal")||"").trim()||null,
       message:(fd.get("message")||"").trim()||null
     };
     if(!payload.name){ rsvpMsg.textContent="Please enter your name."; rsvpMsg.classList.add("err"); return; }
