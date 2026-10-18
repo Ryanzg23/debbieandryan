@@ -81,11 +81,10 @@ img{max-width:100%;display:block}
 /* Monogram */
 #curtain .cmono{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;animation:cmonoFade .5s ease 2.35s forwards}
 @keyframes cmonoFade{to{opacity:0;transform:scale(1.05)}}
-.mono-img{width:min(66vw,320px);height:auto;display:block;opacity:0;animation:monoIn 1.6s cubic-bezier(.2,.7,.2,1) .3s forwards}
+.mono-img{width:min(66vw,320px);height:auto;display:block;opacity:0;animation:monoIn 1.5s cubic-bezier(.2,.7,.2,1) .3s forwards}
 @keyframes monoIn{
-  0%{opacity:0;transform:scale(.72);filter:blur(12px) drop-shadow(0 0 0 rgba(197,160,90,0))}
-  55%{opacity:1}
-  100%{opacity:1;transform:scale(1);filter:blur(0) drop-shadow(0 6px 26px rgba(197,160,90,.4))}
+  0%{opacity:0;transform:scale(.74)}
+  100%{opacity:1;transform:scale(1)}
 }
 #curtain .cmono .sub{letter-spacing:.42em;text-transform:uppercase;font-size:11px;margin-top:22px;color:#e6c3c9;opacity:0;animation:subIn .7s ease 1.55s forwards}
 @keyframes subIn{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
@@ -147,7 +146,7 @@ body.nav-open{overflow:hidden}
 /* Falling petals layer */
 .petal-fall{position:fixed;top:-7vh;z-index:3;pointer-events:none;will-change:transform;animation:pfall linear forwards}
 @keyframes pfall{to{transform:translateY(112vh)}}
-.petal-fall .pf-in{width:100%;height:100%;display:block;filter:drop-shadow(0 2px 3px rgba(81,19,32,.18));animation:psway ease-in-out infinite alternate}
+.petal-fall .pf-in{width:100%;height:100%;display:block;animation:psway ease-in-out infinite alternate}
 @keyframes psway{from{transform:translateX(-18px) rotate(-30deg)}to{transform:translateX(18px) rotate(40deg)}}
 
 /* Gentle shimmer on dividers */
